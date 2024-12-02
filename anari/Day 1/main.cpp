@@ -4,7 +4,8 @@
 #include <cmath>
 #include <string>
 #include <sstream>
-
+#include <cstdlib>
+#include <fstream>  
 using namespace std;
 
 int calculateDistance (vector<int> list1, vector<int> list2) {
@@ -17,41 +18,38 @@ int calculateDistance (vector<int> list1, vector<int> list2) {
     return totalDistance;
 }
 
-int main() {
+int calculateSimilarity(vector<int> list1, vector<int> list2) {
+    int similarityScore = 0;
+    for (int num : list1) {
+        int numCount = std::count(list2.begin(), list2.end(), num);
+        similarityScore += num * numCount;
+    }
+    return similarityScore;
+}
 
+int main() {
     vector<int> list1, list2;
     string line;
     int number;
     int distance;
 
-    cout << "Enter numbers for left list, seperate it by spaces plzzzz ";
-    getline(cin, line);
-    istringstream stream1(line);
-    while (stream1 >> number) {
-        list1.push_back(number);
+    ifstream inputFile("input.txt");
+    while (getline(inputFile, line)) {
+        istringstream stream(line);
+        int num1, num2;
+        if (stream >> num1 >> num2) {
+            list1.push_back(num1);
+            list2.push_back(num2);
+        }
     }
 
-    cout << "Enter numbers for right list, seperate it by spaces plzzzz ";
-    getline(cin, line);
-    istringstream stream2(line);
-    while (stream2 >> number) {
-        list2.push_back(number);
-    }
+    inputFile.close();
 
-    cout << "List 1: ";
-    for (int num : list1) {
-        cout << num << " ";
-    }
-    cout << endl;
 
-    cout << "List 2: ";
-    for (int num : list2) {
-        cout << num << " ";
-    }
-    cout << endl;
 
     sort(list1.begin(), list1.end());
     sort(list2.begin(), list2.end());
 
     cout <<calculateDistance(list1, list2) << endl;
+    cout <<calculateSimilarity(list1, list2) << endl;
 }
