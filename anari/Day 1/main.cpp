@@ -20,20 +20,20 @@ int calculateDistance (vector<int> list1, vector<int> list2) {
 
 int calculateSimilarity(vector<int> list1, vector<int> list2) {
     int similarityScore = 0;
+
     for (int num : list1) {
         int numCount = std::count(list2.begin(), list2.end(), num);
         similarityScore += num * numCount;
     }
+
     return similarityScore;
 }
 
 int main() {
     vector<int> list1, list2;
     string line;
-    int number;
-    int distance;
-
     ifstream inputFile("input.txt");
+    
     while (getline(inputFile, line)) {
         istringstream stream(line);
         int num1, num2;
@@ -44,8 +44,6 @@ int main() {
     }
 
     inputFile.close();
-
-
 
     sort(list1.begin(), list1.end());
     sort(list2.begin(), list2.end());
