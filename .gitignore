@@ -1,1 +1,17 @@
 **/*.exe
+**/.vscode
+**/*.dll
+**/*.pdb
+**/*.obj
+**/*.lib
+**/*.exp
+**/*.ilk
+**/*.idb
+**/*.suo
+**/*.sdf
+**/*.opensdf
+**/Debug
+**/Release
+**/ipch
+**/x64
+**/x86
