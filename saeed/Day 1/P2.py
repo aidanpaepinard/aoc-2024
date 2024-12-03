@@ -1,6 +1,6 @@
 from collections import Counter
 
-info = open("saeed\Day01\input.txt").readlines()
+info = open("saeed\Day 1\input.txt").readlines()
 
 left= sorted(int(i.split()[0]) for i in info)
 right= sorted(int(i.split()[1]) for i in info)
