@@ -68,7 +68,9 @@ func (r Report) isSafe() bool {
 	if len(r.Levels) < 2 {
 		log.Fatalf("failed to check report due to not enough data, got %d levels", len(r.Levels))
 	}
-	// todo: add check for edge case where level[0] == level[1]
+	if r.Levels[0] == r.Levels[1] {
+		return false
+	}
 	isDecreasing := r.Levels[0] > r.Levels[1]
 	for _, window := range slidingWindow(2, r.Levels) {
 		if (isDecreasing && !(window[0] > window[1] && window[0]-window[1] <= 3)) ||
